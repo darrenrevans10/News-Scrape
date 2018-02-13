@@ -1,0 +1,30 @@
+<br><br><br><br>
+
+<div class="container">
+
+	<div class="header">
+		<h1 class="display-3"><b>ESPN Latest News Articles</h1></b>
+	</div>
+
+<hr><br>
+
+	{{#each articles}}
+		<div class="jumbotron" id="{{this._id}}">
+			<div class="row">
+				<div class="col-md-9">
+					<h3><b><a class="text-muted" target="_blank" href="{{this.link}}" > {{this.headline}} </a></b></h3>
+				</div>
+				<div class="col-md-3">
+					<button type="submit" href="/saved" class="btn btn-danger btn btn-primary btn-lg">SAVE ARTICLE</button>
+				</div>
+			</div><hr>
+			<div class="row">
+				<div class="col-md-12">
+					<h4> {{this.summary}} </h4>
+				</div>
+			</div>
+		</div>
+	{{/each}}
+
+</div>
+
