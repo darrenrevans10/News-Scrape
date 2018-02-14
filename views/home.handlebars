@@ -9,14 +9,16 @@
 <hr><br>
 
 	{{#each articles}}
-		<div class="jumbotron" id="{{this._id}}">
+		<div class="jumbotron">
 			<div class="row">
 				<div class="col-md-9">
 					<h3><b><a class="text-muted" target="_blank" href="{{this.link}}" > {{this.headline}} </a></b></h3>
 				</div>
-				<div class="col-md-3">
-					<button type="submit" href="/saved" class="btn btn-danger btn btn-primary btn-lg">SAVE ARTICLE</button>
-				</div>
+				<form action="/save/{{this._id}}" method="POST">
+					<div class="col-md-3">
+						<button type="submit" class="btn btn-danger btn btn-primary btn-lg">SAVE ARTICLE</button>
+					</div>
+				</form>
 			</div><hr>
 			<div class="row">
 				<div class="col-md-12">

@@ -32,7 +32,7 @@ mongoose.connect(MONGODB_URI, {
 
 app.get("/", function(req, res) {
 	
-	db.Article.find({})
+	db.Article.find({isSaved: false})
 	.then(function(dbArticle) {
 		var hbsObject = {
 			articles: dbArticle
@@ -47,7 +47,7 @@ app.get("/", function(req, res) {
 
 app.get("/saved", function(req, res) {
 	
-	db.Article.find({})
+	db.Article.find({isSaved: true})
 	.populate("comments")
 	.then(function(dbArticle) {
 		var hbsObject = {
@@ -69,7 +69,7 @@ app.get("/articles/:id", function(req, res) {
 			var hbsObject = {
 				article: dbArticle
 			};
-			// res.json(hbsObject);
+			res.json(hbsObject);
 			res.render("saved", hbsObject);
 		})
 		.catch(function(err) {
@@ -78,6 +78,27 @@ app.get("/articles/:id", function(req, res) {
 		});
 });
 
+app.post("/save/:id", function(req, res) {
+	db.Article.update({_id: req.params.id}, {isSaved: true})
+	.then(function(dbArticle) {
+		
+		res.redirect("/");
+	})
+	.catch(function(err) {
+		res.json(err);
+	});
+});
+
+app.post("/delete/:id", function(req, res) {
+	db.Article.update({_id: req.params.id}, {isSaved: false})
+	.then(function(dbArticle) {
+
+		res.redirect("/saved");
+	})
+	.catch(function(err) {
+		res.json(err);
+	});
+});
 
 app.post("/articles/:id", function(req, res) {
 

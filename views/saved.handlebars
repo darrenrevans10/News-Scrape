@@ -53,7 +53,9 @@
 					</form>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-danger btn btn-primary btn-lg">REMOVE</button>
+					<form action="/delete/{{this._id}}" method="POST">
+						<button type="submit" class="btn btn-danger btn btn-primary btn-lg">REMOVE</button>
+					</form>
 				</div>
 			</div><br>
 			<div class="row">
