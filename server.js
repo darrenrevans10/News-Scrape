@@ -69,7 +69,7 @@ app.get("/articles/:id", function(req, res) {
 			var hbsObject = {
 				article: dbArticle
 			};
-			res.json(hbsObject);
+			// res.json(hbsObject);
 			res.render("saved", hbsObject);
 		})
 		.catch(function(err) {
